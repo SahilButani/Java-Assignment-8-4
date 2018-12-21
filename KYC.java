@@ -4,7 +4,7 @@ import java.util.*;
 public class KYC
 {
    public static void main(String ar[])  {
-
+         ArrayList<LocalDate> ld=new ArrayList<>();
        Scanner sc=new Scanner(System.in);
        int n=sc.nextInt();
        while(n>0) {
@@ -14,8 +14,8 @@ public class KYC
            LocalDate dt_2 =  LocalDate.parse(s2 );
 
            if (dt_1.compareTo(dt_2) > 0) {
-               System.out.println("No Range");
-               System.exit(0);
+               ld.add(null);ld.add(null);n--;
+              continue;
 
            }
 
@@ -24,13 +24,27 @@ public class KYC
            LocalDate range1=range.minusDays(30);
            LocalDate range2=range.plusDays(30);
 
-            System.out.println(range1);
+            ld.add(range1);
 
             if(range2.compareTo(dt_2)>0)
-                System.out.println(dt_2);
-            else
-                System.out.println(range2);
-       n--;
-       }//04-05-2017 04-04-2017s
+                ld.add(dt_2);
+          else
+                 ld.add(range2);
+          n--;
+       }
+      for(int i=0;i<ld.size();i++){
+         if(i%2!=0){
+            if(ld.get(i)==null){
+               System.out.println(" RANGE!");
+            continue;}
+         System.out.println(ld.get(i));
+           }
+         else{
+            if(ld.get(i)==null){
+               System.out.print("NO");
+            continue;}
+            System.out.print(ld.get(i)+" ");
+         }
+      }
    }
 }
